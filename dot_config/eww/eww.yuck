@@ -1,0 +1,91 @@
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly false :spacing 8
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"} ${workspace.id == 1 ? "spacing" : ""} ${workspace.id == 10 ? "end" : ""}"
+            (label :text "")
+            )
+          )
+        )
+      )
+    )
+  )
+
+(defpoll time :interval "10s"
+  "date '+%H:%M'")
+(defwidget time []
+  (box :orientation "h"
+       :class "time"
+       :space-evenly false
+    (box :class "time-icon" "󰥔")
+    (label :text time :class "time-text")))
+
+(defwidget start []
+  (box :orientation "h"
+       :class "start"
+       :space-evenly false
+    (eventbox
+      :onclick "bash /home/vt/.config/eww/scripts/doas-sudo"
+      (box :class "start-icon" ""))))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+      (scale :min 0
+             :max 101
+             :active {onchange != ""}
+             :value value
+             :onchange onchange)))
+
+(defwidget start []
+  (box :orientation "h"
+       :class "start"
+       :space-evenly false
+    (eventbox
+      :onclick "bash /home/vt/.config/eww/scripts/doas-sudo"
+      (box :class "start-icon" ""))))
+
+(defwidget quicklaunch []
+  (box :orientation "h"
+       :class "quicklaunch"
+       :space-evenly false
+       :spacing 3
+    (eventbox
+      :onclick "/home/vt/.config/eww/scripts/open-discord"
+      (box :class "discord quicklaunch-icon" "󰙯"))
+    (eventbox
+      :onclick "firefox"
+      (box :class "firefox quicklaunch-icon" "󰈹"))))
+
+; a revealer that shows its child when hovered
+
+(defpoll volume :interval "1s"
+  "scripts/getvol")
+
+(defvar volumeHover false)
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :windowtype "dock"
+  :geometry (geometry :x "3px"
+                        :y "3px"
+                        :width "99.7%"
+                        :height "30px"
+                        :anchor "top center")
+  :reserve (struts :distance "4%" :side "top")
+  (box :class "bar" :space-evenly true :spacing 8
+    (box :halign "start"
+      (workspaces :class "workspaces-widget"))
+    (box :halign "end" :space-evenly false :spacing 8
+      (metric :label "" 
+              :value volume
+              :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+      (time)
+      (quicklaunch)
+      (start))))

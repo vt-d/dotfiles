@@ -1,0 +1,2 @@
+#!/bin/bash
+pactl get-sink-volume @DEFAULT_SINK@ |  grep -oE '[-+]?[0-9]*\.?[0-9]+' | sed '/\%/d' | sed -n '2p'

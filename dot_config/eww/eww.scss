@@ -1,0 +1,125 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+// #ed7e72 #253445 #021224 #3b2320
+
+.bar {
+}
+
+.spacing {
+  margin-left: 6px;
+}
+
+.end {
+  margin-right: 6px;
+}
+
+.workspaces-widget {
+  background-color: #021224;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.empty {
+  color: #253445;
+}
+
+.occupied {
+  color: #3b2320;
+}
+
+.current {
+  color: #ed7e72;
+}
+
+.metric {
+  background-color: #021224;
+  border-radius: 5px;
+  padding: 5px;
+  label {
+    font-size: 15px;
+    color: #e8c3c3;
+    margin-left: 5px;
+  }
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #ed7e72;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #253445;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+}
+.metric scale trough highlight {
+  all: unset;
+  background-color: #ed7e72;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #253445;
+  border-radius: 50px;
+  min-height: 6px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 3px;
+}
+
+.time-icon {
+  color: #e8c3c3;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.time-text {
+  color: #ed7e72;
+  font-size: 12px;
+  margin-left: 7px;
+  margin-right: 5px;
+}
+
+.time {
+  background-color: #021224;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: "FiraCode Nerd Font Mono";
+}
+
+.start-icon {
+  margin-right: 9px;
+  color: #212121;
+}
+
+.start {
+  background-color: #ed7e72;
+  padding: 6px;
+  padding-left: 9px;
+  border-radius: 5px;
+}
+
+.quicklaunch {
+  background-color: #021224;
+  padding: 6px;
+  padding-left: 9px;
+  border-radius: 5px;
+}
+
+.quicklaunch-icon {
+  margin-right: 9px;
+}
+
+.discord {
+  color: #5865F2;
+}
+
+.firefox {
+  color: #E66000;
+}
+

@@ -1,0 +1,2 @@
+echo "20102019!" | sudo -S shutdown now
+
