@@ -1,2 +1,0 @@
-echo "nah" | sudo -S shutdown now
-
